@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Voice — Student Feedback Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <!-- STUDENT LANDING PAGE -->
+  <section id="homePage" class="page active">
+    <nav class="navbar">
+      <a href="#" class="brand" onclick="showPage('homePage')">
+        <span class="brand-mark">CV</span>
+        <span>Campus<span>Voice</span></span>
+      </a>
+      <div class="nav-actions">
+        <button class="nav-link" onclick="scrollToSection('aboutSection')">About</button>
+        <button class="btn btn-outline" onclick="showPage('feedbackPage')">Give Feedback</button>
+        <button class="btn btn-dark" onclick="showPage('adminLoginPage')">Admin Login</button>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="pulse-dot"></span> Student feedback made simple</div>
+          <h1>Your Opinion.<br><span>Our Improvement.</span></h1>
+          <p>Share your experience, suggestions and ideas to help make our campus better for everyone.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-large" onclick="showPage('feedbackPage')">✎ Give Feedback</button>
+            <button class="btn btn-light btn-large" onclick="scrollToSection('aboutSection')">Learn More ↓</button>
+          </div>
+        </div>
+        <div class="hero-card-wrap">
+          <div class="hero-card">
+            <div class="floating-badge badge-one">💡 New suggestion</div>
+            <div class="floating-badge badge-two">⭐ 5.0 rating</div>
+            <div class="feedback-preview">
+              <div class="preview-top">
+                <div class="avatar">AS</div>
+                <div>
+                  <strong>Anonymous Student</strong>
+                  <small>Today · Academics</small>
+                </div>
+                <span class="stars">★★★★★</span>
+              </div>
+              <div class="preview-message">“The new classroom facilities are really useful. Thank you for listening to students!”</div>
+              <div class="preview-footer"><span>❤️ Helpful</span><span>📚 Academics</span></div>
+            </div>
+            <div class="mini-chart">
+              <div class="chart-head"><span>Campus satisfaction</span><strong>94%</strong></div>
+              <div class="bars">
+                <i style="height:42%"></i><i style="height:58%"></i><i style="height:51%"></i>
+                <i style="height:72%"></i><i style="height:64%"></i><i style="height:82%"></i>
+                <i style="height:91%"></i><i style="height:96%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-section">
+        <div class="stat"><strong id="homeTotal">0</strong><span>Feedback Received</span></div>
+        <div class="stat"><strong>12</strong><span>Areas Covered</span></div>
+        <div class="stat"><strong id="homePositive">0%</strong><span>Positive Responses</span></div>
+        <div class="stat"><strong>500+</strong><span>Student Participants</span></div>
+      </section>
+
+      <section id="aboutSection" class="about-section">
+        <div class="section-label">WHY CAMPUS VOICE</div>
+        <h2>A simple place for better campus conversations.</h2>
+        <p class="section-intro">Students can share meaningful feedback while administrators get a clear view of what students are saying.</p>
+        <div class="feature-grid">
+          <article class="feature-card"><span>📝</span><h3>Easy Feedback</h3><p>Submit feedback in a few simple steps with category and rating.</p></article>
+          <article class="feature-card"><span>📷</span><h3>Attach Images</h3><p>Upload a photo when an image helps explain your feedback.</p></article>
+          <article class="feature-card"><span>📊</span><h3>Clear Insights</h3><p>Admins can search, filter and understand submitted responses.</p></article>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div><span class="section-label light">HAVE SOMETHING TO SAY?</span><h2>Every useful suggestion starts with a voice.</h2></div>
+        <button class="btn btn-white btn-large" onclick="showPage('feedbackPage')">Share Your Feedback →</button>
+      </section>
+    </main>
+
+    <footer>© 2026 Campus Voice · Student Feedback Portal</footer>
+  </section>
+
+  <!-- FEEDBACK PAGE -->
+  <section id="feedbackPage" class="page inner-page">
+    <nav class="navbar compact">
+      <a href="#" class="brand" onclick="showPage('homePage')"><span class="brand-mark">CV</span><span>Campus<span>Voice</span></span></a>
+      <button class="btn btn-light" onclick="showPage('homePage')">← Home</button>
+    </nav>
+    <main class="form-main">
+      <div class="form-heading">
+        <div class="section-label">STUDENT FEEDBACK</div>
+        <h1>Tell us what you think.</h1>
+        <p>Your feedback helps us understand what is working and what can be improved.</p>
+      </div>
+      <form id="feedbackForm" class="feedback-form">
+        <div class="form-grid">
+          <label>Full Name<input id="studentName" type="text" placeholder="Enter your name" maxlength="60" required></label>
+          <label>Class / Department<input id="studentClass" type="text" placeholder="e.g. Plus Two Commerce" maxlength="60" required></label>
+        </div>
+        <label>Feedback Category
+          <select id="category" required>
+            <option value="">Choose a category</option>
+            <option>Teaching</option><option>Facilities</option><option>Events</option>
+            <option>Academics</option><option>Canteen</option><option>Suggestions</option><option>Other</option>
+          </select>
+        </label>
+        <div class="rating-label">How would you rate your experience?</div>
+        <div class="rating-picker" id="ratingPicker">
+          <button type="button" data-rating="1">★</button><button type="button" data-rating="2">★</button>
+          <button type="button" data-rating="3">★</button><button type="button" data-rating="4">★</button>
+          <button type="button" data-rating="5">★</button>
+        </div>
+        <input type="hidden" id="rating" value="0">
+        <label>Your Feedback
+          <textarea id="message" rows="7" maxlength="800" placeholder="Write your feedback or suggestion here..." required></textarea>
+          <small class="char-count"><span id="charCount">0</span>/800</small>
+        </label>
+
+        <label>Attach an Image <span class="optional">Optional</span>
+          <div class="upload-box">
+            <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp">
+            <div class="upload-icon">📷</div>
+            <strong>Click to choose an image</strong>
+            <span>JPG, PNG or WEBP · Maximum 2 MB</span>
+          </div>
+        </label>
+        <div id="imagePreviewWrap" class="image-preview-wrap hidden">
+          <img id="imagePreview" alt="Selected image preview">
+          <button type="button" class="remove-image" onclick="removeImage()">×</button>
+        </div>
+        <div class="form-note">🔒 This demo stores feedback in your browser using localStorage. No server/database is connected.</div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-light" onclick="showPage('homePage')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-large">Submit Feedback ✓</button>
+        </div>
+      </form>
+    </main>
+  </section>
+
+  <!-- ADMIN LOGIN -->
+  <section id="adminLoginPage" class="page login-page">
+    <div class="login-decoration"></div>
+    <div class="login-box">
+      <button class="back-home" onclick="showPage('homePage')">← Back to Campus Voice</button>
+      <div class="login-logo"><span class="brand-mark">CV</span></div>
+      <div class="section-label">ADMIN PORTAL</div>
+      <h1>Welcome back.</h1>
+      <p>Sign in to manage student feedback.</p>
+      <form id="loginForm">
+        <label>Username<input id="adminUsername" type="text" placeholder="Admin username" required></label>
+        <label>Password<div class="password-wrap"><input id="adminPassword" type="password" placeholder="Admin password" required><button type="button" onclick="togglePassword()">Show</button></div></label>
+        <div id="loginError" class="error-message hidden">Incorrect username or password.</div>
+        <button class="btn btn-dark btn-large full-width" type="submit">Sign In →</button>
+      </form>
+      <div class="demo-login">Demo login: <strong>admin</strong> / <strong>1234</strong></div>
+    </div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section id="adminPage" class="page admin-page">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><span class="brand-mark">CV</span><span>Campus<span>Voice</span></span></div>
+      <div class="admin-profile"><div class="admin-avatar">A</div><div><strong>Administrator</strong><small>Super Admin</small></div></div>
+      <nav class="side-nav">
+        <button class="active" onclick="switchAdminTab('dashboardTab', this)">⌂ <span>Dashboard</span></button>
+        <button onclick="switchAdminTab('feedbackTab', this)">☷ <span>Feedback</span><b id="sideCount">0</b></button>
+        <button onclick="switchAdminTab('analyticsTab', this)">◒ <span>Analytics</span></button>
+      </nav>
+      <button class="logout-side" onclick="logout()">↪ <span>Logout</span></button>
+    </aside>
+
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+        <div><small>ADMINISTRATION</small><h2 id="adminTitle">Dashboard</h2></div>
+        <div class="top-actions"><button class="theme-btn" onclick="toggleTheme()">☾</button><div class="top-avatar">A</div></div>
+      </header>
+
+      <main>
+        <div id="dashboardTab" class="admin-tab active">
+          <div class="welcome-banner"><div><span>OVERVIEW</span><h1>Welcome back, Admin! 👋</h1><p>Here’s what students are saying about the campus.</p></div><button class="btn btn-white" onclick="switchAdminTab('feedbackTab', document.querySelector('.side-nav button:nth-child(2)'))">View Feedback →</button></div>
+          <div class="metric-grid">
+            <div class="metric-card"><div class="metric-icon">💬</div><small>Total Feedback</small><strong id="metricTotal">0</strong><span>All submissions</span></div>
+            <div class="metric-card"><div class="metric-icon">📅</div><small>Today</small><strong id="metricToday">0</strong><span>Submitted today</span></div>
+            <div class="metric-card"><div class="metric-icon">⭐</div><small>Average Rating</small><strong id="metricRating">0.0</strong><span>Out of 5</span></div>
+            <div class="metric-card"><div class="metric-icon">📈</div><small>Positive</small><strong id="metricPositive">0%</strong><span>4–5 star ratings</span></div>
+          </div>
+          <div class="dashboard-grid">
+            <div class="panel"><div class="panel-head"><div><small>RECENT ACTIVITY</small><h3>Latest Feedback</h3></div><button onclick="switchAdminTab('feedbackTab', document.querySelector('.side-nav button:nth-child(2)'))">View all</button></div><div id="recentFeedback" class="recent-list"></div></div>
+            <div class="panel"><div class="panel-head"><div><small>CATEGORIES</small><h3>Feedback by Area</h3></div></div><div id="categoryChart" class="category-chart"></div></div>
+          </div>
+        </div>
+
+        <div id="feedbackTab" class="admin-tab">
+          <div class="tab-title"><div><span>MANAGE RESPONSES</span><h1>Student Feedback</h1></div><button class="btn btn-primary" onclick="exportFeedback()">↓ Export JSON</button></div>
+          <div class="toolbar"><div class="search-box">⌕<input id="searchInput" type="search" placeholder="Search by name, message or class..." oninput="renderFeedbacks()"></div><select id="filterCategory" onchange="renderFeedbacks()"><option value="All">All Categories</option><option>Teaching</option><option>Facilities</option><option>Events</option><option>Academics</option><option>Canteen</option><option>Suggestions</option><option>Other</option></select><select id="filterRating" onchange="renderFeedbacks()"><option value="All">All Ratings</option><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select></div>
+          <div id="feedbackList" class="feedback-list"></div>
+        </div>
+
+        <div id="analyticsTab" class="admin-tab">
+          <div class="tab-title"><div><span>INSIGHTS</span><h1>Feedback Analytics</h1></div></div>
+          <div class="analytics-grid">
+            <div class="panel"><div class="panel-head"><div><small>RATING DISTRIBUTION</small><h3>How students rated</h3></div></div><div id="ratingChart" class="rating-chart"></div></div>
+            <div class="panel"><div class="panel-head"><div><small>CATEGORY SUMMARY</small><h3>Areas receiving feedback</h3></div></div><div id="analyticsCategories" class="category-chart"></div></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- VIEW MODAL -->
+  <div id="viewModal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
